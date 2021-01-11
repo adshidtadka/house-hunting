@@ -1,0 +1,14 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "/Users/takaaki/Github/house-hunting/api/build/logs/error/.41830d5358de8abf4f7c404bf16d41afa8ed3d3b-audit.json",
+    "files": [
+        {
+            "date": 1610377352186,
+            "name": "/Users/takaaki/Github/house-hunting/api/build/logs/error/2021-01-12.error.log",
+            "hash": "8463163f752416a45954e530bfddd3a3"
+        }
+    ]
+}
