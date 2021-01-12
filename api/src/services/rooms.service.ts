@@ -11,12 +11,15 @@ class RoomService {
     return rooms;
   }
 
-  // public async findRoomById(roomId: number): Promise<Room> {
-  //   const findRoom: Room = this.rooms.find(room => room.id === roomId);
-  //   if (!findRoom) throw new HttpException(409, "You're not room");
-  //
-  //   return findRoom;
-  // }
+  public async findRoomById(roomId: number): Promise<Room> {
+    const rooms: Room = await roomModel.getRoomById(roomId);
+    return rooms;
+  }
+
+  public async findRoomsByQuery(query: string): Promise<Room[]> {
+    const rooms: Room[] = await roomModel.getRoomByQuery(query);
+    return rooms;
+  }
   //
   // public async createRoom(roomData: CreateRoomDto): Promise<Room> {
   //   if (isEmpty(roomData)) throw new HttpException(400, "You're not roomData");

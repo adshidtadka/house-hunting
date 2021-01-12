@@ -8,25 +8,31 @@ class RoomsController {
 
   public getRooms = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const findAllRoomsData: Room[] = await this.roomService.findAllRoom();
-
-      res.status(200).json({ data: findAllRoomsData, message: 'findAll' });
+      const query = String(req.query.q);
+      console.log(query);
+      if (query) {
+        const findRoomsData: Room[] = await this.roomService.findRoomsByQuery(query);
+        res.status(200).json({ data: findRoomsData, message: 'findRoomsByQuery' });
+      } else {
+        const findAllRoomsData: Room[] = await this.roomService.findAllRoom();
+        res.status(200).json({ data: findAllRoomsData, message: 'findAll' });
+      }
     } catch (error) {
       next(error);
     }
   };
 
-  // public getRoomById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-  //   try {
-  //     const roomId = Number(req.params.id);
-  //     const findOneRoomData: Room = await this.roomService.findRoomById(roomId);
-  //
-  //     res.status(200).json({ data: findOneRoomData, message: 'findOne' });
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // };
-  //
+  public getRoomById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      const roomId = Number(req.params.id);
+      const findOneRoomData: Room = await this.roomService.findRoomById(roomId);
+
+      res.status(200).json({ data: findOneRoomData, message: 'findOne' });
+    } catch (error) {
+      next(error);
+    }
+  };
+
   // public createRoom = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   //   try {
   //     const roomData: CreateRoomDto = req.body;

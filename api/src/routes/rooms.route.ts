@@ -15,7 +15,7 @@ class RoomsRoute implements Route {
 
   private initializeRoutes() {
     this.router.get(`${this.path}`, this.roomsController.getRooms);
-    // this.router.get(`${this.path}/:id(\\d+)`, this.roomsController.getRoomById);
+    this.router.get(`${this.path}/:id(\\d+)`, this.roomsController.getRoomById);
     // this.router.post(`${this.path}`, validationMiddleware(CreateRoomDto, 'body'), this.roomsController.createRoom);
     // this.router.put(`${this.path}/:id(\\d+)`, validationMiddleware(CreateRoomDto, 'body', true), this.roomsController.updateRoom);
     // this.router.delete(`${this.path}/:id(\\d+)`, this.roomsController.deleteRoom);
