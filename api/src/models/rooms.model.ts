@@ -1,11 +1,23 @@
+import * as mysql from 'mysql';
 import { Room } from '../interfaces/rooms.interface';
 
-// password: q1w2e3r4
-const roomModel: Room[] = [
-  { id: 1, email: 'lim@gmail.com', password: '$2b$10$hmrwtGwC.QlfWt6YWaT3S.FP9CarS3.V9n3Qr.d9y2ovcan0oxs56' },
-  { id: 2, email: 'kim@gmail.com', password: '$2b$10$hmrwtGwC.QlfWt6YWaT3S.FP9CarS3.V9n3Qr.d9y2ovcan0oxs56' },
-  { id: 3, email: 'park@gmail.com', password: '$2b$10$hmrwtGwC.QlfWt6YWaT3S.FP9CarS3.V9n3Qr.d9y2ovcan0oxs56' },
-  { id: 4, email: 'choi@gmail.com', password: '$2b$10$hmrwtGwC.QlfWt6YWaT3S.FP9CarS3.V9n3Qr.d9y2ovcan0oxs56' },
-];
+const config = {
+  host: 'localhost',
+  user: 'root',
+  password: 'password',
+  database: 'house_hunting',
+};
 
-export default roomModel;
+export const getRooms = (): Promise<Room[]> => {
+  return new Promise((resolve, reject) => {
+    const con = mysql.createConnection(config);
+    con.connect(err => {
+      if (err) throw err;
+    });
+    const sql = 'SELECT * FROM rooms';
+    con.query(sql, (err, rows: Room[]) => {
+      if (err) throw reject(err);
+      resolve(rows);
+    });
+  });
+};

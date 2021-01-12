@@ -1,15 +1,13 @@
-import bcrypt from 'bcrypt';
-import { CreateRoomDto } from '../dtos/rooms.dto';
-import HttpException from '../exceptions/HttpException';
+// import bcrypt from 'bcrypt';
+// import { CreateRoomDto } from '../dtos/rooms.dto';
+// import HttpException from '../exceptions/HttpException';
 import { Room } from '../interfaces/rooms.interface';
-import roomModel from '../models/rooms.model';
-import { isEmpty } from '../utils/util';
+import * as roomModel from '../models/rooms.model';
+// import { isEmpty } from '../utils/util';
 
 class RoomService {
-  public rooms = roomModel;
-
   public async findAllRoom(): Promise<Room[]> {
-    const rooms: Room[] = this.rooms;
+    const rooms: Room[] = await roomModel.getRooms();
     return rooms;
   }
 

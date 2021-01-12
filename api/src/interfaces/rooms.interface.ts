@@ -1,5 +1,6 @@
 export interface Room {
   id: number;
-  email: string;
-  password: string;
+  name: string;
+  station_name: string;
+  route_name: string;
 }
