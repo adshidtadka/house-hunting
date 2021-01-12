@@ -6,11 +6,11 @@ $ mysql -uroot -p
 Enter password: password
 
 # create database
-mysql> source schema.sql
+mysql> source schema.sql;
 
 # select database
 mysql> use house_hunting
 
 # create data
-mysql> source data.sql
+mysql> source data.sql;
 ```
