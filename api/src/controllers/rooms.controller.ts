@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { CreateRoomDto } from '../dtos/rooms.dto';
+// import { CreateRoomDto } from '../dtos/rooms.dto';
 import { Room } from '../interfaces/rooms.interface';
 import roomService from '../services/rooms.service';
 
@@ -8,10 +8,8 @@ class RoomsController {
 
   public getRooms = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const query = String(req.query.q);
-      console.log(query);
-      if (query) {
-        const findRoomsData: Room[] = await this.roomService.findRoomsByQuery(query);
+      if (req.query.q) {
+        const findRoomsData: Room[] = await this.roomService.findRoomsByQuery(String(req.query.q));
         res.status(200).json({ data: findRoomsData, message: 'findRoomsByQuery' });
       } else {
         const findAllRoomsData: Room[] = await this.roomService.findAllRoom();
