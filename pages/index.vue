@@ -17,7 +17,12 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="room in filteredRooms" :key="room.id">
+                    <tr
+                      v-for="room in filteredRooms"
+                      :key="room.id"
+                      @click="clickRow(room.id)"
+                      class="row-pointer"
+                    >
                       <td>{{ room.name }}</td>
                       <td>{{ room.station_name }}</td>
                       <td>{{ room.route_name }}</td>
@@ -45,6 +50,11 @@ export default {
     const rooms = await this.$axios.$get("http://localhost:3001/rooms");
     this.rooms = rooms.data;
   },
+  methods: {
+    clickRow(roomId) {
+      this.$router.push(`/rooms/${roomId}`);
+    },
+  },
   computed: {
     filteredRooms() {
       if (this.rooms.length && this.query !== null && this.query !== "") {
@@ -67,3 +77,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.row-pointer:hover {
+  cursor: pointer;
+}
+</style>>
